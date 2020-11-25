@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Formulario = () => {
+const Formulario = ({ guardarBusquedaLetra }) => {
   const [busqueda, guardarBusqueda] = useState({
     artista: "",
     cancion: "",
@@ -26,10 +26,16 @@ const Formulario = () => {
       return;
     }
     guardarError(false);
+    guardarBusquedaLetra(busqueda);
   };
   return (
     <div className="bg-info">
       <div className="container">
+        {error ? (
+          <p className="alert alert-danger text-center p-2">
+            Todos los campos son obligatorios
+          </p>
+        ) : null}
         <div className="row">
           <form
             className="col card text-white bg-transparent mb-5 pt-5 pb-2"
